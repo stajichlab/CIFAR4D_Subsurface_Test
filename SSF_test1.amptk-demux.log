@@ -1,0 +1,201 @@
+[01/04/23 13:37:49]: /opt/linux/rocky/8.x/x86_64/pkgs/amptk/1.5/bin/amptk illumina -i input --rev_primer ITS2 --fwd_primer ITS1-F --rescue_forward on --require_primer off --cpus 8 -o SSF_test1
+
+[01/04/23 13:37:49]: OS: Rocky Linux 8.5, 256 cores, ~ 1056 GB RAM. Python: 3.10.6
+[01/04/23 13:37:49]: Python Modules: numpy v1.23.4, pandas v1.5.1, matplotlib v3.6.0, psutil v5.9.3, natsort v8.2.0, biopython v1.79, edlib v1.3.9, biom-format v2.1.12
+[01/04/23 13:37:49]: AMPtk v1.5.4, VSEARCH v2.21.2
+[01/04/23 13:37:49]: Gzipped files detected, uncompressing
+[01/04/23 13:37:49]: Uncompressing SLPW7_ITS_S210_R1_001.fastq.gz
+[01/04/23 13:37:49]: pigz --decompress -c -p 8 input/SLPW7_ITS_S210_R1_001.fastq.gz
+[01/04/23 13:37:49]: Uncompressing H50b_ITS_S200_R1_001.fastq.gz
+[01/04/23 13:37:49]: pigz --decompress -c -p 8 input/H50b_ITS_S200_R1_001.fastq.gz
+[01/04/23 13:37:49]: Uncompressing SLPW8_ITS_S211_R1_001.fastq.gz
+[01/04/23 13:37:49]: pigz --decompress -c -p 8 input/SLPW8_ITS_S211_R1_001.fastq.gz
+[01/04/23 13:37:49]: Uncompressing H50b_ITS_S200_R2_001.fastq.gz
+[01/04/23 13:37:49]: pigz --decompress -c -p 8 input/H50b_ITS_S200_R2_001.fastq.gz
+[01/04/23 13:37:50]: Uncompressing HSF3_ITS_S205_R2_001.fastq.gz
+[01/04/23 13:37:50]: pigz --decompress -c -p 8 input/HSF3_ITS_S205_R2_001.fastq.gz
+[01/04/23 13:37:50]: Uncompressing SLPW7_ITS_S210_R2_001.fastq.gz
+[01/04/23 13:37:50]: pigz --decompress -c -p 8 input/SLPW7_ITS_S210_R2_001.fastq.gz
+[01/04/23 13:37:50]: Uncompressing SLPW8_ITS_S211_R2_001.fastq.gz
+[01/04/23 13:37:50]: pigz --decompress -c -p 8 input/SLPW8_ITS_S211_R2_001.fastq.gz
+[01/04/23 13:37:50]: Uncompressing HSF3_ITS_S205_R1_001.fastq.gz
+[01/04/23 13:37:50]: pigz --decompress -c -p 8 input/HSF3_ITS_S205_R1_001.fastq.gz
+[01/04/23 13:37:50]: Uncompressing HSS_ITS_S201_R2_001.fastq.gz
+[01/04/23 13:37:50]: pigz --decompress -c -p 8 input/HSS_ITS_S201_R2_001.fastq.gz
+[01/04/23 13:37:51]: Uncompressing HSS_ITS_S201_R1_001.fastq.gz
+[01/04/23 13:37:51]: pigz --decompress -c -p 8 input/HSS_ITS_S201_R1_001.fastq.gz
+[01/04/23 13:37:51]: ITS1-F fwd primer found in AMPtk primer db, setting to: CTTGGTCATTTAGAGGAAGTAA
+[01/04/23 13:37:51]: ITS2 rev primer found in AMPtk primer db, setting to: GCTGCGTTCTTCATCGATGC
+[01/04/23 13:37:51]: Demuxing data using 8 cpus
+[01/04/23 13:37:51]: Dropping reads less than 100 bp and setting lossless trimming to 300 bp.
+[01/04/23 13:37:51]: Strip Primers and Merge PE reads. FwdPrimer: CTTGGTCATTTAGAGGAAGTAA RevPrimer: GCTGCGTTCTTCATCGATGC
+[01/04/23 13:37:51]: H50b: input/H50b_ITS_S200_R1_001.fastq input/H50b_ITS_S200_R2_001.fastq
+[01/04/23 13:37:51]: HSS: input/HSS_ITS_S201_R1_001.fastq input/HSS_ITS_S201_R2_001.fastq
+[01/04/23 13:37:51]: SLPW7: input/SLPW7_ITS_S210_R1_001.fastq input/SLPW7_ITS_S210_R2_001.fastq
+[01/04/23 13:37:51]: HSF3: input/HSF3_ITS_S205_R1_001.fastq input/HSF3_ITS_S205_R2_001.fastq
+[01/04/23 13:37:51]: SLPW8: input/SLPW8_ITS_S211_R1_001.fastq input/SLPW8_ITS_S211_R2_001.fastq
+[01/04/23 13:37:51]: Now merging PE reads
+[01/04/23 13:37:51]: Merging PE reads using vsearch --fastq_mergepairs: SLPW8_R1.fq SLPW8_R2.fq
+[01/04/23 13:37:51]: vsearch --fastq_mergepairs SSF_test1/SLPW8_R1.fq --reverse SSF_test1/SLPW8_R2.fq --fastqout SSF_test1/SLPW8.merged.fq.merged.fq --fastqout_notmerged_fwd SSF_test1/SLPW8.merged.fq.notmerged.R1.fq --fastq_minmergelen 100 --fastq_allowmergestagger --threads 1
+[01/04/23 13:37:51]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Merging reads 100%
+       112  Pairs
+        74  Merged (66.1%)
+        38  Not merged (33.9%)
+
+Pairs that failed merging due to various reasons:
+        13  too many differences
+        25  alignment score too low, or score drop too high
+
+Statistics of all reads:
+    250.00  Mean read length
+
+Statistics of merged reads:
+    318.80  Mean fragment length
+     88.62  Standard deviation of fragment length
+      0.45  Mean expected error in forward sequences
+      1.04  Mean expected error in reverse sequences
+      0.36  Mean expected error in merged sequences
+      0.43  Mean observed errors in merged region of forward sequences
+      1.28  Mean observed errors in merged region of reverse sequences
+      1.72  Mean observed errors in merged region
+
+[01/04/23 13:37:51]: Now merging PE reads
+[01/04/23 13:37:51]: Merging PE reads using vsearch --fastq_mergepairs: SLPW7_R1.fq SLPW7_R2.fq
+[01/04/23 13:37:51]: vsearch --fastq_mergepairs SSF_test1/SLPW7_R1.fq --reverse SSF_test1/SLPW7_R2.fq --fastqout SSF_test1/SLPW7.merged.fq.merged.fq --fastqout_notmerged_fwd SSF_test1/SLPW7.merged.fq.notmerged.R1.fq --fastq_minmergelen 100 --fastq_allowmergestagger --threads 1
+[01/04/23 13:37:51]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Merging reads 100%
+       833  Pairs
+       701  Merged (84.2%)
+       132  Not merged (15.8%)
+
+Pairs that failed merging due to various reasons:
+         3  too few kmers found on same diagonal
+        42  too many differences
+        86  alignment score too low, or score drop too high
+         1  merged fragment too short
+
+Statistics of all reads:
+    250.00  Mean read length
+
+Statistics of merged reads:
+    339.27  Mean fragment length
+     74.39  Standard deviation of fragment length
+      0.32  Mean expected error in forward sequences
+      0.90  Mean expected error in reverse sequences
+      0.32  Mean expected error in merged sequences
+      0.23  Mean observed errors in merged region of forward sequences
+      1.02  Mean observed errors in merged region of reverse sequences
+      1.26  Mean observed errors in merged region
+
+[01/04/23 13:37:51]: Now merging PE reads
+[01/04/23 13:37:51]: Merging PE reads using vsearch --fastq_mergepairs: HSS_R1.fq HSS_R2.fq
+[01/04/23 13:37:51]: vsearch --fastq_mergepairs SSF_test1/HSS_R1.fq --reverse SSF_test1/HSS_R2.fq --fastqout SSF_test1/HSS.merged.fq.merged.fq --fastqout_notmerged_fwd SSF_test1/HSS.merged.fq.notmerged.R1.fq --fastq_minmergelen 100 --fastq_allowmergestagger --threads 1
+[01/04/23 13:37:51]: Now merging PE reads
+[01/04/23 13:37:51]: Merging PE reads using vsearch --fastq_mergepairs: HSF3_R1.fq HSF3_R2.fq
+[01/04/23 13:37:51]: vsearch --fastq_mergepairs SSF_test1/HSF3_R1.fq --reverse SSF_test1/HSF3_R2.fq --fastqout SSF_test1/HSF3.merged.fq.merged.fq --fastqout_notmerged_fwd SSF_test1/HSF3.merged.fq.notmerged.R1.fq --fastq_minmergelen 100 --fastq_allowmergestagger --threads 1
+[01/04/23 13:37:51]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Merging reads 100%
+      5764  Pairs
+      3859  Merged (67.0%)
+      1905  Not merged (33.0%)
+
+Pairs that failed merging due to various reasons:
+        26  too few kmers found on same diagonal
+       491  too many differences
+      1379  alignment score too low, or score drop too high
+         9  merged fragment too short
+
+Statistics of all reads:
+    250.00  Mean read length
+
+Statistics of merged reads:
+    302.80  Mean fragment length
+     85.35  Standard deviation of fragment length
+      0.30  Mean expected error in forward sequences
+      0.96  Mean expected error in reverse sequences
+      0.22  Mean expected error in merged sequences
+      0.17  Mean observed errors in merged region of forward sequences
+      1.24  Mean observed errors in merged region of reverse sequences
+      1.41  Mean observed errors in merged region
+
+[01/04/23 13:37:52]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Merging reads 100%
+      6897  Pairs
+      4278  Merged (62.0%)
+      2619  Not merged (38.0%)
+
+Pairs that failed merging due to various reasons:
+        28  too few kmers found on same diagonal
+         1  multiple potential alignments
+       707  too many differences
+      1875  alignment score too low, or score drop too high
+         8  merged fragment too short
+
+Statistics of all reads:
+    249.99  Mean read length
+
+Statistics of merged reads:
+    256.98  Mean fragment length
+     79.94  Standard deviation of fragment length
+      0.30  Mean expected error in forward sequences
+      0.88  Mean expected error in reverse sequences
+      0.17  Mean expected error in merged sequences
+      0.26  Mean observed errors in merged region of forward sequences
+      1.22  Mean observed errors in merged region of reverse sequences
+      1.48  Mean observed errors in merged region
+
+[01/04/23 13:37:52]: Now merging PE reads
+[01/04/23 13:37:52]: Merging PE reads using vsearch --fastq_mergepairs: H50b_R1.fq H50b_R2.fq
+[01/04/23 13:37:52]: vsearch --fastq_mergepairs SSF_test1/H50b_R1.fq --reverse SSF_test1/H50b_R2.fq --fastqout SSF_test1/H50b.merged.fq.merged.fq --fastqout_notmerged_fwd SSF_test1/H50b.merged.fq.notmerged.R1.fq --fastq_minmergelen 100 --fastq_allowmergestagger --threads 1
+[01/04/23 13:37:52]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Merging reads 100%
+      8973  Pairs
+      5732  Merged (63.9%)
+      3241  Not merged (36.1%)
+
+Pairs that failed merging due to various reasons:
+        14  too few kmers found on same diagonal
+       624  too many differences
+      2596  alignment score too low, or score drop too high
+         7  merged fragment too short
+
+Statistics of all reads:
+    250.00  Mean read length
+
+Statistics of merged reads:
+    223.42  Mean fragment length
+     68.27  Standard deviation of fragment length
+      0.27  Mean expected error in forward sequences
+      0.80  Mean expected error in reverse sequences
+      0.12  Mean expected error in merged sequences
+      0.26  Mean observed errors in merged region of forward sequences
+      1.08  Mean observed errors in merged region of reverse sequences
+      1.34  Mean observed errors in merged region
+
+[01/04/23 13:37:53]: Concatenating Demuxed Files
+[01/04/23 13:37:53]: 22,580 total reads
+[01/04/23 13:37:53]: 6,967 Fwd Primer found, 9,103 Rev Primer found
+[01/04/23 13:37:53]: 1 discarded Primer incompatibility
+[01/04/23 13:37:53]: 0 discarded too short (< 100 bp)
+[01/04/23 13:37:53]: 22,579 valid output reads
+[01/04/23 13:37:53]: Found 5 barcoded samples
+                        Sample:  Count
+                          H50b:  8973
+                          HSF3:  6897
+                           HSS:  5764
+                         SLPW7:  833
+                         SLPW8:  112
+[01/04/23 13:37:53]: pigz -c -p 8 SSF_test1.demux.fq
+[01/04/23 13:37:53]: Output file:  SSF_test1.demux.fq.gz (2.0 MB)
+[01/04/23 13:37:53]: Mapping file: SSF_test1.mapping_file.txt

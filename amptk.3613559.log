@@ -1,0 +1,115 @@
+Loading amptk/1.5
+  Loading requirement: usearch/10 mafft/7.490 fasttree/2.1.11
+[01:37:49 PM]: OS: Rocky Linux 8.5, 256 cores, ~ 1056 GB RAM. Python: 3.10.6
+[01:37:49 PM]: AMPtk v1.5.4, VSEARCH v2.21.2
+[01:37:49 PM]: Gzipped files detected, uncompressing
+[01:37:51 PM]: ITS1-F fwd primer found in AMPtk primer db, setting to: CTTGGTCATTTAGAGGAAGTAA
+[01:37:51 PM]: ITS2 rev primer found in AMPtk primer db, setting to: GCTGCGTTCTTCATCGATGC
+[01:37:51 PM]: Demuxing data using 8 cpus
+[01:37:51 PM]: Dropping reads less than 100 bp and setting lossless trimming to 300 bp.
+[01:37:51 PM]: Strip Primers and Merge PE reads. FwdPrimer: CTTGGTCATTTAGAGGAAGTAA RevPrimer: GCTGCGTTCTTCATCGATGC
+-------------------------------------------------------
+     Progress: 0.00%      Progress: 40.00% [01:37:53 PM]: Concatenating Demuxed Files
+[01:37:53 PM]: 22,580 total reads
+[01:37:53 PM]: 6,967 Fwd Primer found, 9,103 Rev Primer found
+[01:37:53 PM]: 1 discarded Primer incompatibility
+[01:37:53 PM]: 0 discarded too short (< 100 bp)
+[01:37:53 PM]: 22,579 valid output reads
+[01:37:53 PM]: Found 5 barcoded samples
+                        Sample:  Count
+                          H50b:  8973
+                          HSF3:  6897
+                           HSS:  5764
+                         SLPW7:  833
+                         SLPW8:  112
+[01:37:53 PM]: Output file:  SSF_test1.demux.fq.gz (2.0 MB)
+[01:37:53 PM]: Mapping file: SSF_test1.mapping_file.txt
+-------------------------------------------------------
+-------------------------------------------------------
+
+Example of next cmd: amptk cluster -i SSF_test1.demux.fq.gz -o out
+
+[01:37:54 PM]: OS: Rocky Linux 8.5, 256 cores, ~ 1056 GB RAM. Python: 3.10.6
+[01:37:54 PM]: AMPtk v1.5.4, VSEARCH v2.21.2
+[01:37:54 PM]: Loading FASTQ Records
+[01:37:55 PM]: 22,579 reads (2.0 MB)
+[01:37:55 PM]: Quality Filtering, expected errors < 1.0
+[01:37:55 PM]: 17,506 reads passed
+[01:37:55 PM]: De-replication (remove duplicate reads)
+[01:37:55 PM]: 6,968 reads passed
+[01:37:55 PM]: Clustering OTUs (VSEARCH --cluster_smallmem)
+[01:37:56 PM]: De novo Chimera detection (VSEARCH --uchime_denovo)
+[01:37:56 PM]: 148 OTUs
+[01:37:56 PM]: Cleaning up padding from OTUs
+[01:37:56 PM]: Validating OTU orientation
+[01:37:56 PM]: 135 OTUs validated (13 dropped)
+[01:37:56 PM]: Mapping Reads to OTUs and Building OTU table
+[01:37:58 PM]: 18,084 reads mapped to OTUs (80%)
+-------------------------------------------------------
+-------------------------------------------------------
+OTU Clustering Script has Finished Successfully
+-------------------------------------------------------
+Clustered OTUs: SSF_test1.cluster.otus.fa
+OTU Table: SSF_test1.otu_table.txt
+-------------------------------------------------------
+
+Example of next cmd: amptk filter -i SSF_test1.otu_table.txt -f SSF_test1.cluster.otus.fa -b <mock barcode>
+
+[01:37:59 PM]: OS: Rocky Linux 8.5, 256 cores, ~ 1056 GB RAM. Python: 3.10.6
+[01:37:59 PM]: AMPtk v1.5.4, VSEARCH v2.21.2
+[01:37:59 PM]: Loading OTU table: SSF_test1.otu_table.txt
+[01:37:59 PM]: OTU table contains 5 samples, 135 OTUs, and 18,084 reads counts
+[01:37:59 PM]: Sorting OTU table naturally
+/opt/linux/rocky/8.x/x86_64/pkgs/amptk/1.5/lib/python3.10/site-packages/amptk/filter.py:300: FutureWarning: In a future version of pandas all arguments of DataFrame.any and Series.any will be keyword-only.
+  filt2 = filtered.loc[(filtered != 0).any(1)]
+[01:37:59 PM]: Normalizing OTU table to number of reads per sample
+[01:37:59 PM]: No spike-in mock (-b) or index-bleed (-p) specified, thus not running index-bleed filtering
+[01:37:59 PM]: Filtered OTU table contains 5 samples, 135 OTUs, and 18,084 read counts
+[01:37:59 PM]: Finding valid OTUs
+-------------------------------------------------------
+-------------------------------------------------------
+OTU Table filtering finished
+-------------------------------------------------------
+OTU Table Stats:      SSF_test1.stats.txt
+Sorted OTU table:     SSF_test1.sorted.txt
+Normalized/filter:    SSF_test1.normalized.txt
+Final Binary table:   SSF_test1.final.binary.txt
+Final OTU table:      SSF_test1.final.txt
+Filtered OTUs:        SSF_test1.filtered.otus.fa
+-------------------------------------------------------
+
+Example of next cmd: amptk taxonomy -f SSF_test1.filtered.otus.fa -i SSF_test1.final.txt -m mapping_file.txt -d ITS2
+
+[01:38:00 PM]: OS: Rocky Linux 8.5, 256 cores, ~ 1056 GB RAM. Python: 3.10.6
+[01:38:00 PM]: AMPtk v1.5.4, VSEARCH v2.21.2
+[01:38:00 PM]: R v4.1.3; LULU v0.1.0
+[01:38:00 PM]: Loading 135 OTUs
+[01:38:00 PM]: Generating pairwise percent identity between OTUs using VSEARCH at 84% identity
+[01:38:00 PM]: Running LULU algorithm
+[01:38:01 PM]: LULU has merged 17 OTUs, output data contains 118 OTUs
+[01:38:01 PM]: LULU OTU table post processing finished
+----------------------------------
+OTU table:  SSF_test1.lulu.otu_table.txt
+OTU FASTA:  SSF_test1.lulu.otus.fa
+LULU map:   SSF_test1.lulu.otu-map.txt
+----------------------------------
+-------------------------------------------------------
+[93m
+Example of next cmd:[0m amptk taxonomy -f SSF_test1.lulu.otus.fa -i SSF_test1.lulu.otu_table.txt -m mapping_file.txt -d ITS2
+
+-------------------------------------------------------
+[01:38:03 PM]: OS: Rocky Linux 8.5, 256 cores, ~ 1056 GB RAM. Python: 3.10.6
+[01:38:03 PM]: AMPtk v1.5.4, VSEARCH v2.21.2
+[01:38:03 PM]: Loading FASTA Records
+[01:38:03 PM]: 118 OTUs
+[01:38:03 PM]: Global alignment OTUs with usearch_global (VSEARCH) against ITS.udb
+[01:38:06 PM]: Classifying OTUs with SINTAX (VSEARCH)
+[01:38:07 PM]: Appending taxonomy to OTU table and OTUs
+[01:38:07 PM]: Generating phylogenetic tree (MAFFT/FastTree)
+[01:38:07 PM]: Taxonomy finished: SSF_test1.taxonomy.txt
+[01:38:07 PM]: Classic OTU table with taxonomy: SSF_test1.otu_table.taxonomy.txt
+[01:38:10 PM]: BIOM OTU table created: SSF_test1.biom
+[01:38:10 PM]: OTUs with taxonomy: SSF_test1.otus.taxonomy.fa
+[01:38:10 PM]: OTU phylogeny: SSF_test1.tree.phy
+-------------------------------------------------------
+-------------------------------------------------------

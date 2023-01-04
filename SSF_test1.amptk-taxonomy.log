@@ -1,0 +1,47 @@
+[01/04/23 13:38:03]: /opt/linux/rocky/8.x/x86_64/pkgs/amptk/1.5/bin/amptk taxonomy -f SSF_test1.lulu.otus.fa -i SSF_test1.lulu.otu_table.txt -m SSF_test1.mapping_file.txt -d ITS1 -o SSF_test1
+
+[01/04/23 13:38:03]: OS: Rocky Linux 8.5, 256 cores, ~ 1056 GB RAM. Python: 3.10.6
+[01/04/23 13:38:03]: Python Modules: numpy v1.23.4, pandas v1.5.1, matplotlib v3.6.0, psutil v5.9.3, natsort v8.2.0, biopython v1.79, edlib v1.3.9, biom-format v2.1.12
+[01/04/23 13:38:03]: AMPtk v1.5.4, VSEARCH v2.21.2
+[01/04/23 13:38:03]: Loading FASTA Records
+[01/04/23 13:38:03]: 118 OTUs
+[01/04/23 13:38:03]: Global alignment OTUs with usearch_global (VSEARCH) against ITS.udb
+[01/04/23 13:38:03]: vsearch --usearch_global SSF_test1.lulu.otus.fa --db /opt/linux/rocky/8.x/x86_64/pkgs/amptk/1.5/lib/python3.10/site-packages/amptk/DB/ITS.udb --userout SSF_test1.usearch.txt --id 0.7 --strand both --output_no_hits --maxaccepts 500 --top_hits_only --userfields query+target+id --notrunclabels --threads 256
+[01/04/23 13:38:06]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Reading UDB file /opt/linux/rocky/8.x/x86_64/pkgs/amptk/1.5/lib/python3.10/site-packages/amptk/DB/ITS.udb 100%
+Reorganizing data in memory 100%
+Creating bitmaps 100%
+Parsing abundances 100%
+842996461 nt in 1389964 seqs, min 100, max 6778, avg 606
+Searching 100%
+Matching unique query sequences: 83 of 118 (70.34%)
+
+[01/04/23 13:38:06]: Classifying OTUs with SINTAX (VSEARCH)
+[01/04/23 13:38:06]: vsearch --sintax SSF_test1.lulu.otus.fa --db /opt/linux/rocky/8.x/x86_64/pkgs/amptk/1.5/lib/python3.10/site-packages/amptk/DB/ITS1_SINTAX.udb --tabbedout SSF_test1.sintax.txt -sintax_cutoff 0.8 --threads 256 --notrunclabels
+[01/04/23 13:38:07]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Reading UDB file /opt/linux/rocky/8.x/x86_64/pkgs/amptk/1.5/lib/python3.10/site-packages/amptk/DB/ITS1_SINTAX.udb 100%
+Reorganizing data in memory 100%
+Creating bitmaps 100%
+Parsing abundances 100%
+38210608 nt in 140785 seqs, min 100, max 2763, avg 271
+Classifying sequences 100%
+Classified 82 of 118 sequences (69.49%)
+
+[01/04/23 13:38:07]: SINTAX results parsed, resulting in 81 taxonomy predictions
+[01/04/23 13:38:07]: Global alignment results parsed, resulting in 118 taxonomy predictions
+[01/04/23 13:38:07]: Combined OTU taxonomy dictionary contains 118 taxonomy predictions
+[01/04/23 13:38:07]: Appending taxonomy to OTU table and OTUs
+[01/04/23 13:38:07]: Generating phylogenetic tree (MAFFT/FastTree)
+[01/04/23 13:38:07]: mafft SSF_test1.lulu.otus.fa
+[01/04/23 13:38:07]: fasttree -nt SSF_test1.mafft.fasta
+[01/04/23 13:38:07]: Taxonomy finished: SSF_test1.taxonomy.txt
+[01/04/23 13:38:07]: Classic OTU table with taxonomy: SSF_test1.otu_table.taxonomy.txt
+[01/04/23 13:38:08]: biom convert -i SSF_test1.lulu.otu_table.txt -o SSF_test1.biom.tmp --table-type OTU table --to-json
+[01/04/23 13:38:09]: biom add-metadata -i SSF_test1.biom.tmp -o SSF_test1.biom --observation-metadata-fp SSF_test1.qiime.taxonomy.txt -m SSF_test1.mapping_file.txt --sc-separated taxonomy --output-as-json
+[01/04/23 13:38:10]: BIOM OTU table created: SSF_test1.biom
+[01/04/23 13:38:10]: OTUs with taxonomy: SSF_test1.otus.taxonomy.fa
+[01/04/23 13:38:10]: OTU phylogeny: SSF_test1.tree.phy

@@ -1,0 +1,12 @@
+[01/04/23 13:37:59]: /opt/linux/rocky/8.x/x86_64/pkgs/amptk/1.5/bin/amptk filter -c all -i SSF_test1.otu_table.txt -f SSF_test1.cluster.otus.fa
+
+[01/04/23 13:37:59]: OS: Rocky Linux 8.5, 256 cores, ~ 1056 GB RAM. Python: 3.10.6
+[01/04/23 13:37:59]: Python Modules: numpy v1.23.4, pandas v1.5.1, matplotlib v3.6.0, psutil v5.9.3, natsort v8.2.0, biopython v1.79, edlib v1.3.9, biom-format v2.1.12
+[01/04/23 13:37:59]: AMPtk v1.5.4, VSEARCH v2.21.2
+[01/04/23 13:37:59]: Loading OTU table: SSF_test1.otu_table.txt
+[01/04/23 13:37:59]: OTU table contains 5 samples, 135 OTUs, and 18,084 reads counts
+[01/04/23 13:37:59]: Sorting OTU table naturally
+[01/04/23 13:37:59]: Normalizing OTU table to number of reads per sample
+[01/04/23 13:37:59]: No spike-in mock (-b) or index-bleed (-p) specified, thus not running index-bleed filtering
+[01/04/23 13:37:59]: Filtered OTU table contains 5 samples, 135 OTUs, and 18,084 read counts
+[01/04/23 13:37:59]: Finding valid OTUs

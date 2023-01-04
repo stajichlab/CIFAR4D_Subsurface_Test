@@ -1,0 +1,123 @@
+[01/04/23 13:37:54]: /opt/linux/rocky/8.x/x86_64/pkgs/amptk/1.5/bin/amptk cluster -i SSF_test1.demux.fq.gz -o SSF_test1
+
+[01/04/23 13:37:54]: OS: Rocky Linux 8.5, 256 cores, ~ 1056 GB RAM. Python: 3.10.6
+[01/04/23 13:37:54]: Python Modules: numpy v1.23.4, pandas v1.5.1, matplotlib v3.6.0, psutil v5.9.3, natsort v8.2.0, biopython v1.79, edlib v1.3.9, biom-format v2.1.12
+[01/04/23 13:37:54]: AMPtk v1.5.4, VSEARCH v2.21.2
+[01/04/23 13:37:54]: Loading FASTQ Records
+[01/04/23 13:37:54]: vsearch --fastq_filter SSF_test1.demux.fq.gz --fastaout SSF_test1_tmp/SSF_test1.orig.fa --fastq_qmax 55 --threads 1
+[01/04/23 13:37:55]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Reading input file 100%
+22579 sequences kept (of which 0 truncated), 0 sequences discarded.
+
+[01/04/23 13:37:55]: 22,579 reads (2.0 MB)
+[01/04/23 13:37:55]: Quality Filtering, expected errors < 1.0
+[01/04/23 13:37:55]: vsearch --fastq_filter SSF_test1.demux.fq.gz --fastq_maxee 1.0 --fastqout SSF_test1_tmp/SSF_test1.EE1.0.filter.fq --fastaout SSF_test1_tmp/SSF_test1.EE1.0.filter.fa --fastq_qmax 55 --threads 1
+[01/04/23 13:37:55]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Reading input file 100%
+17506 sequences kept (of which 0 truncated), 5073 sequences discarded.
+
+[01/04/23 13:37:55]: 17,506 reads passed
+[01/04/23 13:37:55]: De-replication (remove duplicate reads)
+[01/04/23 13:37:55]: vsearch --derep_fulllength SSF_test1_tmp/SSF_test1.EE1.0.filter.fa --sizeout --output SSF_test1_tmp/SSF_test1.EE1.0.derep.fa --threads 1
+[01/04/23 13:37:55]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Dereplicating file SSF_test1_tmp/SSF_test1.EE1.0.filter.fa 100%
+4126254 nt in 17506 seqs, min 101, max 300, avg 236
+Sorting 100%
+6968 unique sequences, avg cluster 2.5, median 1, max 1703
+Writing FASTA output file 100%
+
+[01/04/23 13:37:55]: 6,968 reads passed
+[01/04/23 13:37:55]: vsearch --sortbysize SSF_test1_tmp/SSF_test1.EE1.0.derep.fa --minsize 2 --output SSF_test1_tmp/SSF_test1.EE1.0.sort.fa --threads 1
+[01/04/23 13:37:55]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Reading file SSF_test1_tmp/SSF_test1.EE1.0.derep.fa 100%
+1854268 nt in 6968 seqs, min 101, max 300, avg 266
+Getting sizes 100%
+Sorting 100%
+Median abundance: 2
+Writing output 100%
+
+[01/04/23 13:37:55]: Clustering OTUs (VSEARCH --cluster_smallmem)
+[01/04/23 13:37:55]: vsearch --cluster_smallmem SSF_test1_tmp/SSF_test1.EE1.0.sort.fa --relabel OTU --usersort --sizeout --id 0.97 --centroids SSF_test1_tmp/SSF_test1.EE1.0.smallmem.otus.fa --threads 256
+[01/04/23 13:37:56]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Reading file SSF_test1_tmp/SSF_test1.EE1.0.sort.fa 100%
+320015 nt in 1225 seqs, min 109, max 300, avg 261
+Masking 100%
+Counting k-mers 100%
+Clustering 100%
+Sorting clusters 100%
+Writing clusters 100%
+Clusters: 148 Size min 1, max 106, avg 8.3
+Singletons: 40, 3.3% of seqs, 27.0% of clusters
+
+[01/04/23 13:37:56]: De novo Chimera detection (VSEARCH --uchime_denovo)
+[01/04/23 13:37:56]: vsearch --uchime_denovo SSF_test1_tmp/SSF_test1.EE1.0.smallmem.otus.fa --sizein --nonchimeras SSF_test1_tmp/SSF_test1.EE1.0.otus.fa
+[01/04/23 13:37:56]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Reading file SSF_test1_tmp/SSF_test1.EE1.0.smallmem.otus.fa 100%
+33775 nt in 148 seqs, min 109, max 300, avg 228
+Masking 100%
+Sorting by abundance 100%
+Counting k-mers 100%
+Detecting chimeras 100%
+Found 0 (0.0%) chimeras, 148 (100.0%) non-chimeras,
+and 0 (0.0%) borderline sequences in 148 unique sequences.
+Taking abundance information into account, this corresponds to
+0 (0.0%) chimeras, 1225 (100.0%) non-chimeras,
+and 0 (0.0%) borderline sequences in 1225 total sequences.
+
+[01/04/23 13:37:56]: 148 OTUs
+[01/04/23 13:37:56]: Cleaning up padding from OTUs
+[01/04/23 13:37:56]: Validating OTU orientation
+[01/04/23 13:37:56]: vsearch --usearch_global SSF_test1_tmp/SSF_test1.EE1.0.sort.fa --db SSF_test1_tmp/SSF_test1.EE1.0.clean.otus.fa --sizein --id 0.97 --strand plus --uc SSF_test1_tmp/orient.uc
+[01/04/23 13:37:56]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Reading file SSF_test1_tmp/SSF_test1.EE1.0.clean.otus.fa 100%
+33775 nt in 148 seqs, min 109, max 300, avg 228
+Masking 100%
+Counting k-mers 100%
+Creating k-mer index 100%
+Searching 100%
+Matching unique query sequences: 1225 of 1225 (100.00%)
+Matching total query sequences: 11763 of 11763 (100.00%)
+
+[01/04/23 13:37:56]: vsearch --usearch_global SSF_test1_tmp/SSF_test1.EE1.0.clean.otus.fa --db SSF_test1_tmp/SSF_test1.EE1.0.clean.otus.fa --self --id 0.95 --strand both --userout SSF_test1_tmp/orient-map.txt --userfields query+target+qstrand+id
+[01/04/23 13:37:56]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Reading file SSF_test1_tmp/SSF_test1.EE1.0.clean.otus.fa 100%
+33775 nt in 148 seqs, min 109, max 300, avg 228
+Masking 100%
+Counting k-mers 100%
+Creating k-mer index 100%
+Searching 100%
+Matching unique query sequences: 44 of 148 (29.73%)
+
+[01/04/23 13:37:56]: Dropping 13 OTUs: OTU112, OTU117, OTU133, OTU95, OTU127, OTU99, OTU96, OTU88, OTU116, OTU108, OTU118, OTU105, OTU134
+[01/04/23 13:37:56]: 135 OTUs validated (13 dropped)
+[01/04/23 13:37:56]: Mapping Reads to OTUs and Building OTU table
+[01/04/23 13:37:56]: vsearch --usearch_global SSF_test1_tmp/SSF_test1.orig.fa --strand plus --id 0.97 --db SSF_test1_tmp/SSF_test1.passed.otus.fa --uc SSF_test1_tmp/SSF_test1.EE1.0.mapping.uc --otutabout SSF_test1_tmp/SSF_test1.EE1.0.otu_table.txt --threads 256
+[01/04/23 13:37:58]: vsearch v2.21.2_linux_x86_64, 1007.4GB RAM, 256 cores
+https://github.com/torognes/vsearch
+
+Reading file SSF_test1_tmp/SSF_test1.passed.otus.fa 100%
+29875 nt in 135 seqs, min 109, max 300, avg 221
+Masking 100%
+Counting k-mers 100%
+Creating k-mer index 100%
+Searching 100%
+Matching unique query sequences: 18084 of 22579 (80.09%)
+Writing OTU table (classic) 100%
+
+[01/04/23 13:37:58]: 18,084 reads mapped to OTUs (80%)

@@ -1,0 +1,6 @@
+	reads per sample	original OTUs	final OTUs
+H50b	7662	74	74
+HSF3	5298	86	86
+HSS	4456	80	80
+SLPW7	588	39	39
+SLPW8	80	24	24
